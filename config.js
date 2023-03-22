@@ -1,0 +1,18 @@
+/**
+ * Модуль содержит ключи интеграции и другие конфигурации
+ */
+const config = {
+	// данные для api amocrm
+	CLIENT_ID: "57c517db-6a79-4f2e-ae83-9ab0d34cc817",
+	CLIENT_SECRET:
+		"JfpmkppRwIvZvcg25YGmOZwN0biTv2LYvlgVO0h0hp6LkFbcZJidyTaFaABlVrUZ",
+	//AUTH_CODE живет 20 минут, при перезапуске скрипта нужно брать новый
+	AUTH_CODE:
+		"def5020065334f5ac4f0fd00efc1ad0146289034560f13e7948bb3ab6bf930187b4cc968eededfcf5fa1cbd436a58ca18a0afdf460312e5bec88cf16d566cb1dc6f1fe7f8ba51cb1e83cb8e4f4148509cc6084e5cf73680f145593c97cd3befd182fd07739059940dfc256d63b010f0ba60531fb377a48fe8c92e4bf66281f1d442fc9ffa3b7306cbebd483ee09076a10ae3ebcfc14962baf691e1d961fda06a0e597b134f7ba634e7f3a9ada3ecc09788d49e85b7e4f1e472944ecc1205fd3179577c4ad8f57b353b7de59b1afd6a232d6ce47db65b59edc3a5d117e7085e11b4bbd9c04c013e1d854fea185302c1ec3af2f46e9751ee415ada673534344fe4dbf0a46cd6f67b315e2acfd3f2c402a78a8840a1e6c97b1b72557d7bb3ecb91352ea8fff7345cda05dd9ec57d609b0d811d088f11f68223d9d52c9fb945323c27c30afcd4af391b882cfd0b590c7586302bb8356f3173c60879b655f0ae7c3131733ef5b856c74707c3ec7305182d2f4c52a85372eb0288c371b4065b3ea3244fb259c2ff04bd7b67c6a354990fbadc74f872491ef40a7286b08228b329c83e3f955679876b0ae321df8df7aa7a76dd9421bbad7e69bbfb33d46cff8c77cc7c213c31215803d65288a40e4e9fac46850fd8057c9010a97c11fdbe3e35c4d62f4a406",
+	REDIRECT_URI: "https://36d8-77-95-90-50.ngrok.io",
+	SUB_DOMAIN: "qwerty202320",
+	// конфигурация сервера
+	PORT: 2000,
+};
+
+module.exports = config;
