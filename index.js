@@ -10,43 +10,44 @@ const { getFieldValue, makeField } = require("./utils");
 
 const app = express();
 
-const idFieldBirthDay = "375847";
-const idFieldAge = "377623";
+const ID_FIELD_BIRTHDAY = "375847";
+const ID_FIELD_AGE = "377623";
 
 const сalculateAge = (year) => {
-	return new Date().getFullYear() - year;
+	const age = new Date().getFullYear() - year;
+	if (Math.sign(age) === -1) {
+		return 0;
+	}
+	return age;
 };
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-api.getAccessToken().then(() => {
-	app.post("/hook", (req, res) => {
-		const contact = req.body.contacts.add[0];
+app.post("/hook", (req, res) => {
+	const contact = req.body.contacts.add[0];
 
-		const birthdayValue = getFieldValue(contact.custom_fields, idFieldBirthDay);
+	const birthdayValue = getFieldValue(contact.custom_fields, ID_FIELD_BIRTHDAY);
 
-		if (!birthdayValue) {
-			res.send("Отсутствует дата рождения");
-			return;
-		}
+	if (!birthdayValue) {
+		res.send("Отсутствует дата рождения");
+		return;
+	}
 
-		const year = +birthdayValue.split(".")[2];
+	const year = +birthdayValue.split(".")[2];
 
-		const age = сalculateAge(year);
+	const age = сalculateAge(year);
 
-		const makeFieldAge = makeField(+idFieldAge, age);
+	const makeFieldAge = makeField(+ID_FIELD_AGE, age);
 
-		const obj = {
-			id: +contact.id,
-			custom_fields_values: [makeFieldAge],
-		};
+	const contactForUpdate = {
+		id: +contact.id,
+		custom_fields_values: [makeFieldAge],
+	};
 
-		api.updateContacts(obj).then(() => {
-			res.send("OK");
-		});
+	api.updateContacts(contactForUpdate).then(() => {
+		res.send("OK");
 	});
-	app.listen(config.PORT, () =>
-		logger.debug("Server started on ", config.PORT)
-	);
 });
+
+app.listen(config.PORT, () => logger.debug("Server started on ", config.PORT));
