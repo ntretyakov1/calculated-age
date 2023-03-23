@@ -41,7 +41,21 @@ const makeField = (field_id, value, enum_id) => {
 	};
 };
 
+/**
+ * Функция расчета возраста по году рождения
+ * @param {*} year - год рождения в формате числа;
+ * @returns возраст в формате числа или ноль если в параметре отрицательное число.
+ */
+const сalculateAge = (year) => {
+	const age = new Date().getFullYear() - year;
+	if (age < 0) {
+		return 0;
+	}
+	return age;
+};
+
 module.exports = {
 	getFieldValue,
 	makeField,
+	сalculateAge,
 };
