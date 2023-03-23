@@ -6,7 +6,7 @@ const express = require("express");
 const api = require("./api");
 const logger = require("./logger");
 const config = require("./config");
-const { getFieldValue, makeField,сalculateAge } = require("./utils");
+const { getFieldValue, makeField, сalculateAge } = require("./utils");
 const { ID_FIELD_BIRTHDAY, ID_FIELD_AGE } = require("./const");
 
 const app = express();
@@ -23,9 +23,7 @@ app.post("/hook", (req, res) => {
 		return res.send("Отсутствует дата рождения");
 	}
 
-	const year = +birthdayValue.split(".")[2];
-
-	const age = сalculateAge(year);
+	const age = сalculateAge(birthdayValue);
 
 	const makeFieldAge = makeField(+ID_FIELD_AGE, age);
 

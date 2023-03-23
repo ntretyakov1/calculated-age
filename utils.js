@@ -43,13 +43,24 @@ const makeField = (field_id, value, enum_id) => {
 
 /**
  * Функция расчета возраста по году рождения
- * @param {*} year - год рождения в формате числа;
+ * @param {*} birthDay - Дата рождения;
  * @returns возраст в формате числа или ноль если в параметре отрицательное число.
  */
-const сalculateAge = (year) => {
-	const age = new Date().getFullYear() - year;
+const сalculateAge = (birthDay) => {
+	const now = new Date();
+	const [day, month, year] = birthDay.split(".");
+	const birthDayDate = new Date(+year, +month - 1, +day + 1);
+	const birthdayCurrentYear = new Date(
+		now.getFullYear(),
+		birthDayDate.getMonth(),
+		birthDayDate.getDate()
+	);
+	let age = now.getFullYear() - birthDayDate.getFullYear();
+	if (now < birthdayCurrentYear) {
+		age = age - 1;
+	}
 	if (age < 0) {
-		return 0;
+		age = 0;
 	}
 	return age;
 };
